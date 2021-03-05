@@ -15,18 +15,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Slide")]
     [SerializeField] float slideLength = 2.0f;
 
-    [Header("Normal Collider")]
-    [SerializeField] Vector3 normalCollider = new Vector3(1, 1, 1);
-    [SerializeField] Vector3 normalPositonCollider = new Vector3(0, 0, 0);
 
-
-    [Header("Slide Collider")]
-    [SerializeField] Vector3 slideCollider;
-    [SerializeField] Vector3 slidePositonCollider;
-
-    [Header("Jump Collider")]
-    [SerializeField] Vector3 jumpCollider;
-    [SerializeField] Vector3 jumpPositionCollider;
 
     Vector3 startPosition;
 
@@ -42,12 +31,21 @@ public class PlayerMovement : MonoBehaviour
     float m_SlideStart;
 
     float k_GroundingSpeed = 80f;
-
+    PlayerCollider PlayerCollider;
     private void Start()
     {
-        instance = this;
+        Init();
+    }
+    void Init()
+    {
+        if (instance == null)
+            instance = this;
+        else
+            Destroy(this.gameObject);
+
         startPosition = this.transform.position;
         rigid = this.GetComponent<Rigidbody>();
+        PlayerCollider = this.GetComponent<PlayerCollider>();
     }
     void Update()
     {
@@ -137,7 +135,7 @@ public class PlayerMovement : MonoBehaviour
         PlayerAnimation.instance.SlideBool(true);
 
 
-        SlideCollider(true);
+        PlayerCollider.SlideCollider(true);
         onSlide = true;
 
 
@@ -160,7 +158,7 @@ public class PlayerMovement : MonoBehaviour
             PlayerAnimation.instance.JumpSpeed(animSpeed);
             PlayerAnimation.instance.JumpBool(true);
 
-            JumpCollider(true);
+            PlayerCollider.JumpCollider(true);
             onJump = true;
         }
     }
@@ -191,7 +189,7 @@ public class PlayerMovement : MonoBehaviour
                 {
                     onJump = false;
                     PlayerAnimation.instance.JumpBool(false);
-                    JumpCollider(false);
+                    PlayerCollider.JumpCollider(false);
                 }
                 else
                 {
@@ -217,40 +215,11 @@ public class PlayerMovement : MonoBehaviour
         if (onSlide)
         {
 
-            SlideCollider(false);
+            PlayerCollider.SlideCollider(false);
             PlayerAnimation.instance.SlideBool(false);
             onSlide = false;
         }
     }
-    void JumpCollider(bool isJump)
-    {
-        var boxcollider = this.GetComponent<BoxCollider>();
 
-        if (isJump)
-        {
-            boxcollider.center = jumpPositionCollider;
-            boxcollider.size = jumpCollider;
-        }
-        else
-        {
-            boxcollider.center = normalPositonCollider;
-            boxcollider.size = normalCollider;
-        }
-    }
-    void SlideCollider(bool isSlide)
-    {
-        var boxcollider = this.GetComponent<BoxCollider>();
-
-        if (isSlide)
-        {
-            boxcollider.center = slidePositonCollider;
-            boxcollider.size = slideCollider;
-        }
-        else
-        {
-            boxcollider.center = normalPositonCollider;
-            boxcollider.size = normalCollider;
-        }
-    }
 
 }

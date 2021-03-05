@@ -5,15 +5,31 @@ using UnityEngine;
 public class PlayerAnimation : MonoBehaviour
 {
     public static PlayerAnimation instance;
-    public float SpeedRun;
-    [SerializeField] Animator animator;
+    public float SpeedRun; Animator animator;
     void Start()
     {
-        instance = this;
-        animator = this.GetComponent<Animator>();
+        Init();
+    }
+
+    private void Init()
+    {
+        if (instance == null)
+            instance = this;
+        else
+            Destroy(this.gameObject);
+
+        if (animator == null)
+        {
+            animator = this.GetComponent<Animator>();
+            if (animator == null)
+                Debug.LogError("Cant find Animator");
+        }
+        else
+            Destroy(this.gameObject);
 
         animator.Play("Start");
     }
+
     public void StartRun()
     {
         Debug.Log("Set");

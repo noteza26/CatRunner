@@ -17,7 +17,7 @@ public class CameraFollow : MonoBehaviour
     void LateUpdate()
     {
         // transform.position = player.transform.position + offset;
-        var playerVec = new Vector3(player.transform.position.x, offset.y, offset.z);
+        var playerVec = new Vector3(player.transform.position.x, player.transform.position.y + offset.y, offset.z);
 
         transform.position = Vector3.Lerp(transform.position, playerVec, speedMove * Time.deltaTime);
 

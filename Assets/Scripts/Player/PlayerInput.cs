@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerInput : MonoBehaviour
 {
 
-    [SerializeField] PlayerMovement playerMovement;
+    PlayerMovement playerMovement;
 
     [SerializeField] Vector2 m_StartingTouch;
     [SerializeField] bool m_IsSwiping = false;
 
     private void Awake()
     {
-        playerMovement = this.GetComponent<PlayerMovement>();
+        Init();
     }
 
     void Update()
@@ -20,6 +20,12 @@ public class PlayerController : MonoBehaviour
         if (PlayerManager.instance.IsStop) return;
 
         Movement();
+    }
+    void Init()
+    {
+        playerMovement = this.GetComponent<PlayerMovement>();
+        if (playerMovement == null)
+            Debug.LogError("Cant Find Player");
     }
     protected void Movement()
     {
@@ -39,39 +45,23 @@ public class PlayerController : MonoBehaviour
                 {
                     if (Mathf.Abs(diff.y) > Mathf.Abs(diff.x))
                     {
-                        if (diff.y < 0)
-                        {
-                            Debug.Log("Slide");
+                        if (diff.y < 0) //Slide
                             Slide();
-                        }
-                        else
-                        {
-                            Debug.Log("Jump");
-
+                        else //Jump
                             Jump();
-                        }
                     }
                     else
                     {
-                        if (diff.x < 0)
-                        {
-                            Debug.Log("To left");
+                        if (diff.x < 0) //left
                             ChangeLane(-1);
-                        }
-                        else
-                        {
-                            Debug.Log("To right");
-
+                        else //right
                             ChangeLane(1);
-                        }
+
                     }
 
                     m_IsSwiping = false;
                 }
             }
-
-            // Input check is AFTER the swip test, that way if TouchPhase.Ended happen a single frame after the Began Phase
-            // a swipe can still be registered (otherwise, m_IsSwiping will be set to false and the test wouldn't happen for that began-Ended pair)
             if (Input.GetTouch(0).phase == TouchPhase.Began)
             {
                 m_StartingTouch = Input.GetTouch(0).position;
