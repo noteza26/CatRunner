@@ -791,6 +791,57 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 980462649}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1061550648
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1061550649}
+  - component: {fileID: 1061550650}
+  m_Layer: 0
+  m_Name: Item
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1061550649
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1061550648}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 77.54}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1061550650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1061550648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61e5e9c692f2c204ba3f6ae134f4b94f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minTimer: 3
+  maxTimer: 10
+  coinPref:
+  - {fileID: 4501021674809068139, guid: 0f262e0b55c18274fbc399abd475ff9d, type: 3}
+  - {fileID: 7977754470351037953, guid: f820b7e0eb7d6844cbfb0ef8110c7b44, type: 3}
+  - {fileID: 1191508482424320921, guid: fdee598c306e8a746b813d9114fd4017, type: 3}
+  - {fileID: 6223043390406062453, guid: c3ac06c359005c54db5f319e5c0c4f67, type: 3}
+  hasObstaclePref: []
 --- !u!4 &1080048905 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6428407404066798403, guid: c0e9539dde2e62748af6c5b200e0a69f,
@@ -1616,7 +1667,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29e21da2853a84c498b5db94a39de5a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curveStrength: 0.0018
+  curveStrength: 0.003
 --- !u!114 &2094365515
 MonoBehaviour:
   m_ObjectHideFlags: 0

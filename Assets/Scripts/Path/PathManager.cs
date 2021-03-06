@@ -69,5 +69,7 @@ public class PathManager : MonoBehaviour
             DestroyPlane(other.gameObject);
         else if (Tag == "Obstacle")
             Destroy(other.gameObject);
+        else if (Tag == "Item")
+            Destroy(other.gameObject);
     }
 }

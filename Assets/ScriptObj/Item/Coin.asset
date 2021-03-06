@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 17fe6722b9915dc42b291b1f08af68a5, type: 3}
-  m_Name: Coint
+  m_Name: Coin
   m_EditorClassIdentifier: 
   IsExtra: 0
   Type: 0

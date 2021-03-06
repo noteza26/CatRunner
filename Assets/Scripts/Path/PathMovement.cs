@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PathMovement : MonoBehaviour
 {
+    internal GameObject SetDeletePoint { set { deletePoint = value; } }
     [SerializeField] GameObject deletePoint;
 
     void Update()
