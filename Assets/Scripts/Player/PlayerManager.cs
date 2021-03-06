@@ -15,6 +15,7 @@ public class PlayerManager : MonoBehaviour
     [Header("Setting")]
     [SerializeField] int fullHealth;
     [SerializeField] float scoreAdd;
+    [SerializeField] float extraScore;
     void Start()
     {
         instance = this;
@@ -32,7 +33,8 @@ public class PlayerManager : MonoBehaviour
     }
     public void AddPlayerScore(float add)
     {
-        playerScore += add;
+        playerScore += add * (extraScore * 10);
+        GamePlayUI.instace.UpdatePlayerScore(playerScore);
     }
     public void ChangeScoreAdd(float newValue)
     {
@@ -48,7 +50,6 @@ public class PlayerManager : MonoBehaviour
         if (item.Type == TypeItemEnum.Coin)
         {
             AddCoinPlayer(item.AddTo, item.IsExtra);
-            AddScorePlayer(item.AddTo, item.IsExtra);
         }
         else if (item.Type == TypeItemEnum.Item)
         {
@@ -71,10 +72,12 @@ public class PlayerManager : MonoBehaviour
     }
     public void AddCoinPlayer(float coinToAdd, bool isExtra)
     {
-        /*  if (isExtra)
-              playerCoin += coinToAdd * 2;
-          else
-              playerCoin += coinToAdd;*/
+        if (isExtra)
+            playerCoin += coinToAdd * 2;
+        else
+            playerCoin += coinToAdd;
+
+        GamePlayUI.instace.UpdatePlayerCoin(playerCoin);
     }
     public void AddHealth(int healthAdd)
     {

@@ -22,17 +22,10 @@ public class RoadSpawnManager : MonoBehaviour
     }
     void ResetTheme()
     {
+        //When Trigger Reset Theme
         NowTheme = 0;
         NowRoad = 0;
         IsLast = false;
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Spawn();
-        }
     }
     public GameObject Spawn()
     {

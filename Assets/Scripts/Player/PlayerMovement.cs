@@ -57,7 +57,7 @@ public class PlayerMovement : MonoBehaviour
     void CheckGround()
     {
         var playerVec = new Vector2(transform.position.x, transform.position.y + .5f);
-        Debug.DrawRay(playerVec, Vector3.down, Color.blue, 1.25f);
+        //Debug.DrawRay(playerVec, Vector3.down, Color.blue, 1.25f);
         bool grounded = (Physics.Raycast(playerVec, Vector3.down, 1.25f, 1 << LayerMask.NameToLayer("Ground"))); // raycast down to look for ground is not detecting ground? only works if allowing jump when grounded = false; // return "Ground" layer as layer
 
 
@@ -65,22 +65,6 @@ public class PlayerMovement : MonoBehaviour
         {
             isGrounded = grounded;
             PlayerAnimation.instance.SetGround(isGrounded);
-
-            var boxcollider = this.GetComponent<BoxCollider>();
-
-            /*   if (grounded)
-               {
-
-                   boxcollider.center = normalPositonCollider;
-                   boxcollider.size = normalCollider;
-               }
-               else
-               {
-
-                   boxcollider.center = jumpPositionCollider;
-                   boxcollider.size = jumpCollider;
-               }*/
-
         }
     }
     void PlayerInputMovement()
@@ -114,10 +98,6 @@ public class PlayerMovement : MonoBehaviour
             laneNow += moveTo;
             var newCal = laneNow * laneOffset;
             m_TargetPosition = new Vector3(newCal, 0, 0);
-            Debug.Log(newCal);
-            Debug.Log(m_TargetPosition);
-
-            // StartCoroutine(LerpMovement(laneOffset * moveTo));
         }
 
     }
@@ -168,8 +148,6 @@ public class PlayerMovement : MonoBehaviour
 
         if (onSlide)
         {
-            // Slide time isn't constant but the slide length is (even if slightly modified by speed, to slide slightly further when faster).
-            // This is for gameplay reason, we don't want the character to drasticly slide farther when at max speed.
             float correctSlideLength = slideLength * (1.0f + PathManager.instance.speedRatio);
             float ratio = (PlayerManager.instance.GetPlayerScore() - m_SlideStart) / correctSlideLength;
             if (ratio >= 1.0f)
