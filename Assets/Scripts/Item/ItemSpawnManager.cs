@@ -7,10 +7,21 @@ public class ItemSpawnManager : MonoBehaviour
 
     [SerializeField] float minTimer;
     [SerializeField] float maxTimer;
-    [SerializeField] GameObject[] coinPref;
-    [SerializeField] GameObject[] hasObstaclePref;
+    [SerializeField] List<GameObject> coinPref;
+    [SerializeField] List<GameObject> hasObstaclePref;
+    LoadPatternSpawn loadPatternSpawn;
+    private void Awake()
+    {
+        loadPatternSpawn = this.GetComponent<LoadPatternSpawn>();
+        if (loadPatternSpawn)
+        {
+            coinPref.Clear();
+            coinPref = loadPatternSpawn.LoadPatternCoin();
 
-
+            hasObstaclePref.Clear();
+            hasObstaclePref = loadPatternSpawn.LoadPatternObstacle();
+        }
+    }
     void Start()
     {
         StartCoroutine("SpawnItem", 5f);
@@ -32,7 +43,7 @@ public class ItemSpawnManager : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(delayStart);
 
-        var ranPattern = Random.Range(0, coinPref.Length);
+        var ranPattern = Random.Range(0, coinPref.Count);
         SpawnPattern(ranPattern);
 
         var ranTimer = Random.Range(minTimer, maxTimer);

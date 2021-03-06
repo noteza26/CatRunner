@@ -801,6 +801,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1061550649}
   - component: {fileID: 1061550650}
+  - component: {fileID: 1061550651}
   m_Layer: 0
   m_Name: Item
   m_TagString: Untagged
@@ -835,13 +836,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minTimer: 3
-  maxTimer: 10
-  coinPref:
-  - {fileID: 4501021674809068139, guid: 0f262e0b55c18274fbc399abd475ff9d, type: 3}
-  - {fileID: 7977754470351037953, guid: f820b7e0eb7d6844cbfb0ef8110c7b44, type: 3}
-  - {fileID: 1191508482424320921, guid: fdee598c306e8a746b813d9114fd4017, type: 3}
-  - {fileID: 6223043390406062453, guid: c3ac06c359005c54db5f319e5c0c4f67, type: 3}
+  maxTimer: 8
+  coinPref: []
   hasObstaclePref: []
+--- !u!114 &1061550651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1061550648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f728221d68fa0c74b9115384adefff08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1080048905 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6428407404066798403, guid: c0e9539dde2e62748af6c5b200e0a69f,
