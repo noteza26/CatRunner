@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 65cae334ecadca040854b0274a524ff0
+guid: ef1ac0be9caddac4a8a655b85159f302
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable: []
@@ -7,13 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: _barn_big
-    second: {fileID: 2100000, guid: 3d7b9d11f1f5a544b92251091906bcc5, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: _barn_big_top
-    second: {fileID: 2100000, guid: 1297d1bdc01f7b849b016c896d001fdc, type: 2}
+      name: _housesmall
+    second: {fileID: 2100000, guid: 3e3ec3bb298636a468ef01f3f3c168cc, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
@@ -44,7 +39,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 30
+    globalScale: 40
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -91,7 +86,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 30
+    globalScale: 40
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
