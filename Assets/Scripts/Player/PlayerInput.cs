@@ -18,18 +18,25 @@ public class PlayerInput : MonoBehaviour
     void Update()
     {
         if (PlayerManager.instance.IsStop) return;
+        if (Input.GetKeyDown(KeyCode.Escape))
+
+            PauseGame();
 
         Movement();
     }
+
     void Init()
     {
         playerMovement = this.GetComponent<PlayerMovement>();
         if (playerMovement == null)
             Debug.LogError("Cant Find Player");
     }
+    void PauseGame()
+    {
+        PlayerManager.instance.PauseGame();
+    }
     protected void Movement()
     {
-
         // Use touch input on mobile
         if (Input.touchCount == 1)
         {

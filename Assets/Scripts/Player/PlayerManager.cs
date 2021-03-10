@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
     public static PlayerManager instance;
-    public bool IsStop, GodStop;
+    public bool IsStop, IsPause, GodStop;
 
     [SerializeField] float playerScore;
     [SerializeField] float playerCoin;
@@ -27,10 +27,32 @@ public class PlayerManager : MonoBehaviour
     void InitData()
     {
         IsStop = true;
+        IsPause = false;
         playerCoin = 0;
         playerScore = 0;
         playerHealth = fullHealth;
     }
+    public void PauseGame()
+    {
+        if (IsStop) return;
+        IsPause = !IsPause;
+    }
+
+    private void Update()
+    {
+        if (IsPause)
+        {
+            Time.timeScale = 0;
+            UIManager.instance.ShowUI(NameUIShow.PauseMenu);
+        }
+        else
+        {
+            Time.timeScale = 1;
+            UIManager.instance.ShowUI(NameUIShow.GamePlay);
+
+        }
+    }
+
     public void AddPlayerScore(float add)
     {
         distanceScore += add;
