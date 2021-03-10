@@ -60,7 +60,6 @@ public class PlayerMovement : MonoBehaviour
         //Debug.DrawRay(playerVec, Vector3.down, Color.blue, 1.25f);
         bool grounded = (Physics.Raycast(playerVec, Vector3.down, 1.25f, 1 << LayerMask.NameToLayer("Ground"))); // raycast down to look for ground is not detecting ground? only works if allowing jump when grounded = false; // return "Ground" layer as layer
 
-
         if (grounded != isGrounded)
         {
             isGrounded = grounded;
@@ -106,7 +105,7 @@ public class PlayerMovement : MonoBehaviour
         // StartCoroutine(SlideMovement());
         if (onSlide) return;
 
-        m_SlideStart = PlayerManager.instance.GetPlayerScore();
+        m_SlideStart = PlayerManager.instance.GetPlayerDistance();
 
         float correctSlideLength = slideLength * (1.0f + PathManager.instance.speedRatio);
         float animSpeed = 0.6f * (PathManager.instance.nowSpeed / correctSlideLength);
@@ -130,7 +129,7 @@ public class PlayerMovement : MonoBehaviour
                 StopSliding();
             //  PlayerAnimation.instance.Jumping();
 
-            m_JumpStart = PlayerManager.instance.GetPlayerScore();
+            m_JumpStart = PlayerManager.instance.GetPlayerDistance();
 
             float correctJumpLength = jumpLength * (1.0f + PathManager.instance.speedRatio);
             float animSpeed = 0.6f * (PathManager.instance.nowSpeed / correctJumpLength);
@@ -149,20 +148,20 @@ public class PlayerMovement : MonoBehaviour
         if (onSlide)
         {
             float correctSlideLength = slideLength * (1.0f + PathManager.instance.speedRatio);
-            float ratio = (PlayerManager.instance.GetPlayerScore() - m_SlideStart) / correctSlideLength;
+            float ratio = (PlayerManager.instance.GetPlayerDistance() - m_SlideStart) / correctSlideLength;
             if (ratio >= 1.0f)
             {
+
                 // We slid to (or past) the required length, go back to running
                 StopSliding();
             }
         }
-
-        if (onJump)
+        else if (onJump)
         {
             if (!PlayerManager.instance.IsStop)
             {
                 float correctJumpLength = jumpLength * (1.0f + PathManager.instance.speedRatio);
-                float ratio = (PlayerManager.instance.GetPlayerScore() - m_JumpStart) / correctJumpLength;
+                float ratio = (PlayerManager.instance.GetPlayerDistance() - m_JumpStart) / correctJumpLength;
                 if (ratio >= 1)
                 {
                     onJump = false;

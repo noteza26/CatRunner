@@ -16,6 +16,9 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] int fullHealth;
     [SerializeField] float scoreAdd;
     [SerializeField] float extraScore;
+    [SerializeField] float speedScore;
+
+    private float distanceScore;
     void Start()
     {
         instance = this;
@@ -28,13 +31,17 @@ public class PlayerManager : MonoBehaviour
         playerScore = 0;
         playerHealth = fullHealth;
     }
-    void Update()
-    {
-    }
     public void AddPlayerScore(float add)
     {
-        playerScore += add * (extraScore * 10);
-        GamePlayUI.instace.UpdatePlayerScore(playerScore);
+        distanceScore += add;
+        playerScore += add * (extraScore * speedScore);
+
+        if (GamePlayUI.instace)
+            GamePlayUI.instace.UpdatePlayerScore(playerScore);
+    }
+    public void SetSpeedScore(float newSpeed)
+    {
+        speedScore = newSpeed / 10;
     }
     public void ChangeScoreAdd(float newValue)
     {
@@ -43,6 +50,10 @@ public class PlayerManager : MonoBehaviour
     public float GetPlayerScore()
     {
         return playerScore;
+    }
+    public float GetPlayerDistance()
+    {
+        return distanceScore;
     }
     public void AddItem(Item item)
     {

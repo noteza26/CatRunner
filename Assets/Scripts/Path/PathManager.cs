@@ -43,6 +43,7 @@ public class PathManager : MonoBehaviour
 
         var newSpeed = nowSpeed * Time.deltaTime;
 
+        PlayerManager.instance.SetSpeedScore(nowSpeed);
         PlayerAnimation.instance.SpeedRunAnim(newSpeed);
         PlayerManager.instance.AddPlayerScore(newSpeed);
     }
