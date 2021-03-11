@@ -138,7 +138,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Bounce
-  m_Speed: 1
+  m_Speed: 0.75
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -4823445184654157098}
@@ -479,6 +479,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: IsJump
     m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: IsSlide
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -5515517735580373669}
   m_Solo: 0
@@ -510,9 +513,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.25
-  m_TransitionOffset: 0.14927763
-  m_ExitTime: 0.40000004
+  m_TransitionDuration: 0.09719095
+  m_TransitionOffset: 0
+  m_ExitTime: 0.54211247
   m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0

@@ -10,6 +10,7 @@ public class GamePlayUI : MonoBehaviour
     [SerializeField] TextMeshProUGUI playerScoreText;
     [SerializeField] TextMeshProUGUI playerCoinText;
 
+    [SerializeField] TextMeshProUGUI countdownResumeText;
     [SerializeField] Button pauseButton;
     [SerializeField] Button resumeButton;
     // Start is called before the first frame update
@@ -22,6 +23,8 @@ public class GamePlayUI : MonoBehaviour
 
         pauseButton.onClick.AddListener(PauseGame);
         resumeButton.onClick.AddListener(PauseGame);
+        countdownResumeText.gameObject.SetActive(false);
+
     }
     void PauseGame()
     {
@@ -34,7 +37,24 @@ public class GamePlayUI : MonoBehaviour
     {
 
     }
+    public void CountDownResumeText(int num)
+    {
+        if (num != 0)
+        {
+            countdownResumeText.gameObject.SetActive(true);
+            countdownResumeText.text = num.ToString("0");
 
+            var anim = countdownResumeText.gameObject.GetComponent<Animator>();
+            if (anim)
+                anim.Play("FadeInCountDownAnim");
+        }
+        else
+        {
+            countdownResumeText.gameObject.SetActive(false);
+            countdownResumeText.text = "";
+        }
+
+    }
     public void UpdatePlayerScore(float newScore)
     {
         playerScoreText.text = newScore.ToString("00000000");

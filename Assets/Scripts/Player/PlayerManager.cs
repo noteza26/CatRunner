@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
     public static PlayerManager instance;
-    public bool IsStop, IsPause, GodStop;
+    public bool IsStop, IsPause, GodStop, onCountDown;
 
     [SerializeField] float playerScore;
     [SerializeField] float playerCoin;
@@ -34,25 +34,32 @@ public class PlayerManager : MonoBehaviour
     }
     public void PauseGame()
     {
-        if (IsStop) return;
+        if (IsStop || onCountDown) return;
         IsPause = !IsPause;
-    }
 
-    private void Update()
-    {
         if (IsPause)
         {
             Time.timeScale = 0;
             UIManager.instance.ShowUI(NameUIShow.PauseMenu);
         }
-        else
-        {
-            Time.timeScale = 1;
-            UIManager.instance.ShowUI(NameUIShow.GamePlay);
+        else if (!IsPause)
+            StartCoroutine("ResumeGame");
 
-        }
     }
-
+    IEnumerator ResumeGame()
+    {
+        onCountDown = true;
+        UIManager.instance.ShowUI(NameUIShow.GamePlay);
+        GamePlayUI.instace.CountDownResumeText(3);
+        yield return new WaitForSecondsRealtime(1);
+        GamePlayUI.instace.CountDownResumeText(2);
+        yield return new WaitForSecondsRealtime(1);
+        GamePlayUI.instace.CountDownResumeText(1);
+        yield return new WaitForSecondsRealtime(1);
+        GamePlayUI.instace.CountDownResumeText(0);
+        Time.timeScale = 1;
+        onCountDown = false;
+    }
     public void AddPlayerScore(float add)
     {
         distanceScore += add;
