@@ -7,25 +7,30 @@ public class ItemSpawnManager : MonoBehaviour
 
     [SerializeField] float minTimer;
     [SerializeField] float maxTimer;
-    [SerializeField] List<GameObject> coinPref;
-    [SerializeField] List<GameObject> hasObstaclePref;
+    [SerializeField] List<GameObject> PatternObstacle;
     LoadPatternSpawn loadPatternSpawn;
     private void Awake()
+    {
+
+
+    }
+    void Start()
+    {
+        Init();
+        StartCoroutine("SpawnItem", 5f);
+    }
+    void Init()
     {
         loadPatternSpawn = this.GetComponent<LoadPatternSpawn>();
         if (loadPatternSpawn)
         {
-            coinPref.Clear();
-            coinPref = loadPatternSpawn.LoadPatternCoin();
 
-            hasObstaclePref.Clear();
-            hasObstaclePref = loadPatternSpawn.LoadPatternObstacle();
+            PatternObstacle.Clear();
+            PatternObstacle = loadPatternSpawn.PatternObstacle;
+            Debug.Log(loadPatternSpawn.PatternObstacle.Count);
         }
-    }
-    void Start()
-    {
-        StartCoroutine("SpawnItem", 5f);
-
+        else
+            Debug.LogError("Cant Load Data " + loadPatternSpawn.name);
     }
 
     // Update is called once per frame
@@ -35,22 +40,34 @@ public class ItemSpawnManager : MonoBehaviour
     }
     void SpawnPattern(int ran)
     {
-        var newObj = Instantiate(coinPref[ran].gameObject, this.transform);
+        var newObj = Instantiate(PatternObstacle[ran].gameObject, this.transform);
         var addpath = newObj.AddComponent<PathMovement>();
         addpath.SetDeletePoint = newObj;
+
+        var spawnCoin = newObj.GetComponent<ObstacleCoinSpawner>();
+        if (spawnCoin == null) Destroy(newObj.gameObject);
+        else spawnCoin.InitCoin();
     }
     IEnumerator SpawnItem(float delayStart)
     {
         yield return new WaitForSecondsRealtime(delayStart);
 
-        var ranPattern = Random.Range(0, coinPref.Count);
+        var ranPattern = Random.Range(0, PatternObstacle.Count);
         SpawnPattern(ranPattern);
 
-        var ranTimer = Random.Range(minTimer, maxTimer);
+        var ranTimer = Random.Range(minTimer, maxTimer - (float)PlayerManager.instance.GetSpeedScore());
 
 
         yield return new WaitForSecondsRealtime(ranTimer);
 
         StartCoroutine("SpawnItem", 0);
     }
+
+
+    /*
+    NO.2
+        Create a Obstacle and create pref coin Position in Obstacle;
+
+
+    */
 }
