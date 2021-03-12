@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 15aee1a5599b72b4487a667caf226d6f
+guid: 0317ee98bcdba604c946152d8699bce3
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable: []
@@ -7,13 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: _house_red_stru
-    second: {fileID: 2100000, guid: 1168f56697ab89746a134caae06bc2b5, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: house_red_base
-    second: {fileID: 2100000, guid: 738333bf6640a3a4eb8acb2cec881d4a, type: 2}
+      name: _coin
+    second: {fileID: 2100000, guid: 4a46b435b6b2fca4988b6c878a8c7e0d, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
@@ -44,7 +39,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 45
+    globalScale: 4
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -91,7 +86,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.45
+    globalScale: 0.04
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
