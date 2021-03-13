@@ -31,6 +31,7 @@ public class PathManager : MonoBehaviour
     {
         Destroy(plane);
         InstantNewPlane();
+        InstantNewItem();
     }
     private void Update()
     {
@@ -46,6 +47,10 @@ public class PathManager : MonoBehaviour
         PlayerManager.instance.SetSpeedScore(nowSpeed);
         PlayerAnimation.instance.SpeedRunAnim(newSpeed);
         PlayerManager.instance.AddPlayerScore(newSpeed);
+    }
+    void InstantNewItem()
+    {
+        ItemSpawnManager.instance.SpawnItem();
     }
     void InstantNewPlane()
     {

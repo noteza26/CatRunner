@@ -2192,6 +2192,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minTimer: 3
   maxTimer: 8
+  maxTimeNotSpawn: 3
   PatternObstacle: []
 --- !u!114 &1061550651
 MonoBehaviour:

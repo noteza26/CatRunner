@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class ItemSpawnManager : MonoBehaviour
 {
-
+    public static ItemSpawnManager instance;
     [SerializeField] float minTimer;
     [SerializeField] float maxTimer;
+    float maxTimeNotSpawn = Random.Range(2.0f, 3f);
     [SerializeField] List<GameObject> PatternObstacle;
     LoadPatternSpawn loadPatternSpawn;
+
+    float countTimeNotSpawn;
     private void Awake()
     {
 
@@ -20,6 +23,9 @@ public class ItemSpawnManager : MonoBehaviour
     }
     void Init()
     {
+        if (instance == null) instance = this;
+        else Destroy(this.gameObject);
+
         loadPatternSpawn = this.GetComponent<LoadPatternSpawn>();
         if (loadPatternSpawn)
         {
@@ -31,12 +37,21 @@ public class ItemSpawnManager : MonoBehaviour
         else
             Debug.LogError("Cant Load Data " + loadPatternSpawn.name);
 
-        StartSpawnItem();
+        SpawnItem();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (PlayerManager.instance.IsStop) return;
+        CountNoneSpawn();
+    }
+    void CountNoneSpawn()
+    {
+        if (countTimeNotSpawn != maxTimeNotSpawn)
+            countTimeNotSpawn += Time.deltaTime;
+        else
+            countTimeNotSpawn = maxTimeNotSpawn;
 
     }
     void SpawnPattern(int ran)
@@ -48,10 +63,40 @@ public class ItemSpawnManager : MonoBehaviour
         var spawnCoin = newObj.GetComponent<ObstacleCoinSpawner>();
         if (spawnCoin == null) Destroy(newObj.gameObject);
         else spawnCoin.InitCoin();
+
+        countTimeNotSpawn = 0;
+
+
+
     }
-    public void StartSpawnItem()
+    public void SpawnItem()
     {
-        StartCoroutine("SpawnItem", 5f);
+        // StartCoroutine("SpawnItem", 5f);
+
+        /*     if (Random.value > 0.5) //%50 percent chance
+             {
+             }
+
+             if (Random.value > 0.2) //%80 percent chance (1 - 0.2 is 0.8)
+             {
+             }*/
+        if (countTimeNotSpawn >= maxTimeNotSpawn)
+        {
+            var ranPattern = Random.Range(0, PatternObstacle.Count);
+            SpawnPattern(ranPattern);
+            Debug.Log("Spawn With count");
+
+        }
+        else
+        {
+            if (Random.value > 0.7) //%30 percent chance (1 - 0.7 is 0.3)
+            {
+
+                var ranPattern = Random.Range(0, PatternObstacle.Count);
+                SpawnPattern(ranPattern);
+            }
+        }
+
 
     }
     IEnumerator SpawnItem(float delayStart)
