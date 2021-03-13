@@ -80,6 +80,10 @@ public class PlayerManager : MonoBehaviour
     {
         return playerScore;
     }
+    public float GetSpeedScore()
+    {
+        return speedScore;
+    }
     public float GetPlayerDistance()
     {
         return distanceScore;

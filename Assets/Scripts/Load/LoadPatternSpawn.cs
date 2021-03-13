@@ -5,30 +5,22 @@ using UnityEngine;
 
 public class LoadPatternSpawn : MonoBehaviour
 {
+    List<GameObject> _patternObstacle;
 
-    // Start is called before the first frame update
-    void Start()
+    public List<GameObject> PatternObstacle
     {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-    }
-    public List<GameObject> LoadPatternCoin()
-    {
-        var loadCoin = Resources.LoadAll("Item/CoinOnly");
-        var gameObj = new List<GameObject>();
-        foreach (var i in loadCoin)
+        get
         {
-            gameObj.Add((GameObject)i);
+            return _patternObstacle;
         }
-        return gameObj;
     }
-    public List<GameObject> LoadPatternObstacle()
+    private void Awake()
     {
-        var loadCoin = Resources.LoadAll("Item/HasObstacle");
+        _patternObstacle = LoadPatternObstacle();
+    }
+    List<GameObject> LoadPatternObstacle()
+    {
+        var loadCoin = Resources.LoadAll("Obstacle");
         var gameObj = new List<GameObject>();
         foreach (var i in loadCoin)
         {
