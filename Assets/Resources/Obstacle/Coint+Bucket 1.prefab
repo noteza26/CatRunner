@@ -1203,7 +1203,7 @@ Transform:
   - {fileID: 3452885864013686042}
   - {fileID: 1378195581943169900}
   m_Father: {fileID: 7910580239547062402}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2895335133824604809
 GameObject:
@@ -1636,8 +1636,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1234299439398976633}
   m_Layer: 0
-  m_Name: Coin (1)
-  m_TagString: Untagged
+  m_Name: Pt 2
+  m_TagString: CoinPattern
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1649,14 +1649,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3805806350243271086}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 792782893304612858}
   - {fileID: 7266750195792455675}
   - {fileID: 5900830696066264828}
-  m_Father: {fileID: 7910580239547062402}
+  m_Father: {fileID: 7981385086949313781}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3821985389819125203
@@ -2671,8 +2671,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1218023824708063703}
   m_Layer: 0
-  m_Name: Coin
-  m_TagString: Untagged
+  m_Name: Pt 1
+  m_TagString: CoinPattern
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2684,14 +2684,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5883085439564758118}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6027716276352973212}
   - {fileID: 3165806828522112953}
   - {fileID: 4323745434812632389}
-  m_Father: {fileID: 7910580239547062402}
+  m_Father: {fileID: 7981385086949313781}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5936814083296422294
@@ -3164,6 +3164,39 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 0.25}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &6577735383197742735
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7981385086949313781}
+  m_Layer: 0
+  m_Name: Coin-Pattern
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7981385086949313781
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6577735383197742735}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1218023824708063703}
+  - {fileID: 1234299439398976633}
+  - {fileID: 7352319700966852997}
+  m_Father: {fileID: 7910580239547062402}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6643078234036387388
 GameObject:
   m_ObjectHideFlags: 0
@@ -3633,8 +3666,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7352319700966852997}
   m_Layer: 0
-  m_Name: Coin (2)
-  m_TagString: Untagged
+  m_Name: Pt 3
+  m_TagString: CoinPattern
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3646,14 +3679,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7864069405573035383}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7964504739457435368}
   - {fileID: 915114505802450291}
   - {fileID: 2915190927009011029}
-  m_Father: {fileID: 7910580239547062402}
+  m_Father: {fileID: 7981385086949313781}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7910580239547062403
@@ -3686,9 +3719,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1218023824708063703}
-  - {fileID: 1234299439398976633}
-  - {fileID: 7352319700966852997}
+  - {fileID: 7981385086949313781}
   - {fileID: 896795424542750414}
   - {fileID: 8913635244607924033}
   m_Father: {fileID: 0}
@@ -3706,10 +3737,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 414b4055a0fa98c4288bc5928d07d191, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coinPattern:
-  - {fileID: 5883085439564758118}
-  - {fileID: 3805806350243271086}
-  - {fileID: 7864069405573035383}
+  coinTransform: {fileID: 7981385086949313781}
+  coinPattern: []
 --- !u!54 &6694107214261728112
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4391,7 +4420,7 @@ PrefabInstance:
     - target: {fileID: 7020239903197640116, guid: c030169695999d84ba87d6bd2fc3b9e4,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7020239903197640116, guid: c030169695999d84ba87d6bd2fc3b9e4,
         type: 3}

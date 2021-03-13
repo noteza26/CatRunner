@@ -8,6 +8,7 @@ TagManager:
   - Coin
   - Lane
   - Item
+  - CoinPattern
   layers:
   - Default
   - TransparentFX

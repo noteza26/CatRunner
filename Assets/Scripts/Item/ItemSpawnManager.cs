@@ -17,7 +17,6 @@ public class ItemSpawnManager : MonoBehaviour
     void Start()
     {
         Init();
-        StartCoroutine("SpawnItem", 5f);
     }
     void Init()
     {
@@ -31,6 +30,8 @@ public class ItemSpawnManager : MonoBehaviour
         }
         else
             Debug.LogError("Cant Load Data " + loadPatternSpawn.name);
+
+        StartSpawnItem();
     }
 
     // Update is called once per frame
@@ -47,6 +48,11 @@ public class ItemSpawnManager : MonoBehaviour
         var spawnCoin = newObj.GetComponent<ObstacleCoinSpawner>();
         if (spawnCoin == null) Destroy(newObj.gameObject);
         else spawnCoin.InitCoin();
+    }
+    public void StartSpawnItem()
+    {
+        StartCoroutine("SpawnItem", 5f);
+
     }
     IEnumerator SpawnItem(float delayStart)
     {
