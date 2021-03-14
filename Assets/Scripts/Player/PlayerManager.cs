@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
     public static PlayerManager instance;
-    public bool IsStop, IsPause, GodStop, GodMode, onCountDown;
+    public bool GameStart, IsStop, IsPause, GodStop, GodMode, onCountDown;
     [SerializeField] GameObject characterPref;
     [SerializeField]
     GameObject playerCharacter;
@@ -41,11 +41,16 @@ public class PlayerManager : MonoBehaviour
     }
     void InitData()
     {
+        GameStart = false;
         IsStop = true;
         IsPause = false;
+        playerHealth = fullHealth;
+        ClearData();
+    }
+    void ClearData()
+    {
         playerCoin = 0;
         playerScore = 0;
-        playerHealth = fullHealth;
     }
     public void PauseGame()
     {
@@ -107,6 +112,19 @@ public class PlayerManager : MonoBehaviour
     {
         if (GodMode) return;
         Debug.Log("Hit Obstacle");
+    }
+    public void StartGame()
+    {
+        GameStart = true;
+        ClearData();
+        var camInstance = CameraMovement.instance;
+        if (camInstance)
+        {
+            camInstance.StartGame();
+            PlayerAnimation.instance.StartGame();
+
+        }
+
     }
     public void AddItem(Item item)
     {

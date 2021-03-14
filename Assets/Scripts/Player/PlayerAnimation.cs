@@ -27,9 +27,11 @@ public class PlayerAnimation : MonoBehaviour
         else
             Destroy(this.gameObject);
 
+    }
+    public void StartGame()
+    {
         animator.Play("Start");
     }
-
     public void StartRun()
     {
         animator.SetBool("IsRun", true);
