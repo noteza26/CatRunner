@@ -32,7 +32,6 @@ public class PlayerAnimation : MonoBehaviour
 
     public void StartRun()
     {
-        Debug.Log("Set");
         animator.SetBool("IsRun", true);
         Invoke("ChangeIsStop", 0.1f);
     }

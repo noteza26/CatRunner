@@ -9,6 +9,7 @@ TagManager:
   - Lane
   - Item
   - CoinPattern
+  - Obstacle
   layers:
   - Default
   - TransparentFX

@@ -5,8 +5,10 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
     public static PlayerManager instance;
-    public bool IsStop, IsPause, GodStop, onCountDown;
-
+    public bool IsStop, IsPause, GodStop, GodMode, onCountDown;
+    [SerializeField] GameObject characterPref;
+    [SerializeField]
+    GameObject playerCharacter;
     [SerializeField] float playerScore;
     [SerializeField] float playerCoin;
 
@@ -23,6 +25,19 @@ public class PlayerManager : MonoBehaviour
     {
         instance = this;
         InitData();
+        InstantPlayer();
+    }
+    void InstantPlayer()
+    {
+        if (playerCharacter == null)
+        {
+
+            var instant = Instantiate(characterPref, this.transform);
+            playerCharacter = instant;
+        }
+        var camInstance = CameraFollow.instance;
+        if (camInstance)
+            CameraFollow.instance.SetCamera(playerCharacter);
     }
     void InitData()
     {
@@ -87,6 +102,11 @@ public class PlayerManager : MonoBehaviour
     public float GetPlayerDistance()
     {
         return distanceScore;
+    }
+    public void HitObstacle()
+    {
+        if (GodMode) return;
+        Debug.Log("Hit Obstacle");
     }
     public void AddItem(Item item)
     {

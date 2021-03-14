@@ -4,20 +4,35 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-
-    public GameObject player;
+    public static CameraFollow instance;
+    public GameObject Player;
     [SerializeField] float speedMove;
     private Vector3 offset;
+    public Transform mainCamera;
 
-    void Start()
+    private void Awake()
     {
-        offset = transform.position - player.transform.position;
+        if (instance) Destroy(this.gameObject);
+        else instance = this;
+        StartOffset();
+    }
+    public void SetCamera(GameObject player)
+    {
+        Player = player;
+        StartOffset();
+    }
+    void StartOffset()
+    {
+        if (Player)
+            offset = mainCamera.position - Player.transform.position;
     }
 
     void LateUpdate()
     {
+        if (Player == null) return;
+
         // transform.position = player.transform.position + offset;
-        var playerVec = new Vector3(player.transform.position.x, player.transform.position.y + offset.y, offset.z);
+        var playerVec = new Vector3(Player.transform.position.x, Player.transform.position.y + offset.y, offset.z);
 
         transform.position = Vector3.Lerp(transform.position, playerVec, speedMove * Time.deltaTime);
 

@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class ItemCoin : ItemManager
 {
-    // Start is called before the first frame update
-    void Start()
+    protected override void OnTriggerEnter(Collider other)
     {
+        base.OnTriggerEnter(other);
 
-    }
+        var tag = other.tag;
+        if (tag == "Obstacle")
+            this.transform.position += new Vector3(0, 2.355f, 0);
 
-    // Update is called once per frame
-    void Update()
-    {
 
     }
 }
