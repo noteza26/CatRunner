@@ -22,8 +22,14 @@ public class GameManager : MonoBehaviour
         if (PlayerManager.instance.GameStart) return;
         if (Input.touchCount == 1 || Input.GetKeyDown(KeyCode.Space))
         {
-            PlayerManager.instance.StartGame();
-            Debug.Log("START GAME");
+            StartGame();
         }
+    }
+    void StartGame()
+    {
+        PlayerManager.instance.StartGame();
+        UIManager.instance.ChangeUI(NameUIShow.GamePlay);
+        GamePlayUX.instance.Tween();
+        Debug.Log("START GAME");
     }
 }

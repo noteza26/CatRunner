@@ -5,10 +5,9 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
     public static PlayerManager instance;
-    public bool GameStart, IsStop, IsPause, GodStop, GodMode, onCountDown;
+    [HideInInspector] public bool GameStart, IsStop, IsPause, GodStop, GodMode, onCountDown;
     [SerializeField] GameObject characterPref;
-    [SerializeField]
-    GameObject playerCharacter;
+    [SerializeField] GameObject playerCharacter;
     [SerializeField] float playerScore;
     [SerializeField] float playerCoin;
 
@@ -21,10 +20,14 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] float speedScore;
 
     private float distanceScore;
+    private void Awake()
+    {
+        InitData();
+
+    }
     void Start()
     {
         instance = this;
-        InitData();
         InstantPlayer();
     }
     void InstantPlayer()
@@ -60,7 +63,7 @@ public class PlayerManager : MonoBehaviour
         if (IsPause)
         {
             Time.timeScale = 0;
-            UIManager.instance.ShowUI(NameUIShow.PauseMenu);
+            UIManager.instance.ChangeUI(NameUIShow.PauseMenu);
         }
         else if (!IsPause)
             StartCoroutine("ResumeGame");
@@ -69,7 +72,7 @@ public class PlayerManager : MonoBehaviour
     IEnumerator ResumeGame()
     {
         onCountDown = true;
-        UIManager.instance.ShowUI(NameUIShow.GamePlay);
+        UIManager.instance.ChangeUI(NameUIShow.GamePlay);
         GamePlayUI.instace.CountDownResumeText(3);
         yield return new WaitForSecondsRealtime(1);
         GamePlayUI.instace.CountDownResumeText(2);

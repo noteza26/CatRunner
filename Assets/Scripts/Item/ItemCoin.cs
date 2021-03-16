@@ -10,7 +10,10 @@ public class ItemCoin : ItemManager
 
         var tag = other.tag;
         if (tag == "Obstacle")
+        {
             this.transform.position += new Vector3(0, 2.355f, 0);
+            Debug.Log("in obstacle");
+        }
 
 
     }

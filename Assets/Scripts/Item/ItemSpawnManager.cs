@@ -42,7 +42,6 @@ public class ItemSpawnManager : MonoBehaviour
         else
             Debug.LogError("Cant Load Data " + loadPatternSpawn.name);
 
-        SpawnItem();
     }
 
     // Update is called once per frame
@@ -59,11 +58,12 @@ public class ItemSpawnManager : MonoBehaviour
             countTimeNotSpawn = maxTimeNotSpawn;
 
     }
-    void SpawnPattern(int ran)
+    void SpawnPattern(int ran, Transform position)
     {
-        var newObj = Instantiate(PatternAll[ran].gameObject, this.transform);
-        var addpath = newObj.AddComponent<PathMovement>();
-        addpath.SetDeletePoint = newObj;
+        var newObj = Instantiate(PatternAll[ran].gameObject, position.transform);
+
+        var newPosition = new Vector3(newObj.transform.position.x, newObj.transform.position.y + 1, newObj.transform.position.z);
+        newObj.transform.position = newPosition;
 
         var spawnCoin = newObj.GetComponent<ObstacleCoinSpawner>();
         if (spawnCoin == null)
@@ -78,7 +78,7 @@ public class ItemSpawnManager : MonoBehaviour
 
 
     }
-    public void SpawnItem()
+    public void SpawnItem(Transform position)
     {
         // StartCoroutine("SpawnItem", 5f);
 
@@ -92,7 +92,7 @@ public class ItemSpawnManager : MonoBehaviour
         if (countTimeNotSpawn >= maxTimeNotSpawn)
         {
             var ranPattern = Random.Range(0, PatternAll.Count);
-            SpawnPattern(ranPattern);
+            SpawnPattern(ranPattern, position);
 
         }
         else
@@ -102,7 +102,7 @@ public class ItemSpawnManager : MonoBehaviour
             {
 
                 var ranPattern = Random.Range(0, PatternAll.Count);
-                SpawnPattern(ranPattern);
+                SpawnPattern(ranPattern, position);
             }
         }
 
@@ -113,7 +113,7 @@ public class ItemSpawnManager : MonoBehaviour
         yield return new WaitForSecondsRealtime(delayStart);
 
         var ranPattern = Random.Range(0, PatternObstacle.Count);
-        SpawnPattern(ranPattern);
+        //SpawnPattern(ranPattern);
 
         var ranTimer = Random.Range(minTimer, maxTimer - (float)PlayerManager.instance.GetSpeedScore());
 

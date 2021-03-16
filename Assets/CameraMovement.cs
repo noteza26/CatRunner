@@ -31,7 +31,6 @@ public class CameraMovement : MonoBehaviour
         while (!isNear)
         {
             var disNow = Vector3.Distance(transform.position, mainCamera.position);
-            Debug.Log(disNow);
             if (disNow <= .1f)
             {
                 isNear = false;

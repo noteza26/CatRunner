@@ -50,7 +50,7 @@ public class PathManager : MonoBehaviour
     }
     void InstantNewItem()
     {
-        ItemSpawnManager.instance.SpawnItem();
+        ItemSpawnManager.instance.SpawnItem(LastPlane.transform);
     }
     void InstantNewPlane()
     {
@@ -70,6 +70,7 @@ public class PathManager : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
+
         var Tag = other.tag;
         if (Tag == "Path")
             DestroyPlane(other.gameObject);
