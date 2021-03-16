@@ -6,6 +6,10 @@ public class CameraMovement : MonoBehaviour
 {
     public static CameraMovement instance;
     public Transform mainCamera;
+
+    [SerializeField] float lerpPosition;
+    [SerializeField]
+    float lerpRotation;
     CameraFollow cameraFollow;
 
     Vector3 mainPosition;
@@ -23,30 +27,29 @@ public class CameraMovement : MonoBehaviour
     }
     IEnumerator FadeCamera()
     {
-        var dis = Vector3.Distance(this.transform.position, mainCamera.position);
-        while (dis > 0.01f)
+        var isNear = false;
+        while (!isNear)
         {
-            transform.position = Vector3.Lerp(transform.position, mainCamera.position, 3f * Time.deltaTime);
-            transform.rotation = Quaternion.Lerp(transform.rotation, mainCamera.rotation, 3f * Time.deltaTime);
-            yield return null;
-            cameraFollow.enabled = true;
-            this.enabled = false;
+            var disNow = Vector3.Distance(transform.position, mainCamera.position);
+            Debug.Log(disNow);
+            if (disNow <= .1f)
+            {
+                isNear = false;
+                break;
+            }
+            else
+            {
+                cameraFollow.enabled = true;
+                this.enabled = false;
+
+                transform.position = Vector3.Lerp(transform.position, mainCamera.position, lerpPosition * Time.deltaTime);
+                transform.rotation = Quaternion.Lerp(transform.rotation, mainCamera.rotation, lerpRotation * Time.deltaTime);
+                yield return null;
+
+            }
+
         }
 
-
-    }
-    // Update is called once per frame
-    void FixedUpdate()
-    {
-        if (Vector3.Distance(this.transform.position, mainCamera.position) <= 0.01f)
-        {
-
-        }
-        else
-        {
-
-
-        }
 
     }
 }

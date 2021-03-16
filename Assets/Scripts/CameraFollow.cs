@@ -8,7 +8,9 @@ public class CameraFollow : MonoBehaviour
     public GameObject Player;
     [SerializeField] float speedMove;
     private Vector3 offset;
-    public Transform mainCamera;
+    public Transform transformCam;
+
+    public Transform CameraObj;
 
     private void Awake()
     {
@@ -24,7 +26,7 @@ public class CameraFollow : MonoBehaviour
     void StartOffset()
     {
         if (Player)
-            offset = mainCamera.position - Player.transform.position;
+            offset = CameraObj.position - Player.transform.position;
     }
 
     void LateUpdate()
@@ -34,7 +36,7 @@ public class CameraFollow : MonoBehaviour
         // transform.position = player.transform.position + offset;
         var playerVec = new Vector3(Player.transform.position.x, Player.transform.position.y + offset.y, offset.z);
 
-        transform.position = Vector3.Lerp(transform.position, playerVec, speedMove * Time.deltaTime);
-
+        CameraObj.position = Vector3.Lerp(CameraObj.position, playerVec, speedMove * Time.deltaTime);
+        // transform.rotation = mainCamera.rotation;
     }
 }
